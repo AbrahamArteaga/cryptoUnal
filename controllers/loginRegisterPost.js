@@ -1,12 +1,8 @@
 const {verify_user, verify_email , add_user_db} = require('../models/connectUserDb');
 const {createEthereumWallet} = require('../utils/createWallet')
 const {decrypt_wallet} = require('../utils/decrypt_wallet')
-<<<<<<< HEAD
 const {consultBalance} = require('../utils/getBalance')
 const {add_Wallet, get_Wallet} = require('../models/connectWalletDb')
-=======
-const { add_Wallet, get_Wallet } = require('../models/connectWalletDb')
->>>>>>> 9766b5186a372ea507b9586497fe560469577e37
 
 // La función getUserLogin es asincrona y espera el resultado de la promesa de verify_user
 const getUserLogin = async(req,res) => {
