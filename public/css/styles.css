@@ -241,3 +241,52 @@ label:hover{
     border-radius: 5px;
     padding: 10px;
 }
+
+@media only screen and (min-width: 850px){
+    .container{
+        width: 60%;
+        margin: auto;
+    }
+    .form-box{
+        width: 100%;
+    }
+    .input-wrapper{
+        padding: 5% 0%;
+    }
+    .inner_container{
+        width: 100%;
+        display: grid;       
+        grid-template-rows: 45% 45%;    
+        column-gap: 5px;               
+        grid-auto-flow: column;
+        align-items: center;
+        justify-items: center;
+    }    
+    .form-box button[type="submit"] {        
+        width:45%;       
+        margin: 3% 0%;           
+    }
+    .inner_container a{
+        margin: 5%;
+        padding: 14px 0px;      
+    }
+    .form-box input[type="text"]:focus, .form-box input[type="password"]:focus {
+        width: 98%;        
+    }
+
+    .inner_container_register{
+        width: 100%;
+        display: grid;       
+        grid-template-rows: 25% 25% 25% 25%;    
+        column-gap: 5px;               
+        grid-auto-flow: column;
+        align-items: center;
+        justify-items: center;
+    }
+    .register_button{
+        display: block;
+        margin:auto;
+    }
+
+
+}
