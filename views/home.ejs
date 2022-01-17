@@ -1,35 +1,19 @@
 <%- include('partials/head') %>
-<body>
-    <div id="homepage">
+<body id="homepage">
+    
         <header>
             <h1 class="page__title">Crypto<b class="page__title page__title--bold">UNAL</b></h1>
+            <div action="/logout">
+                <input type="button" value="Logout" class="button_home" onclick="window.location.href = '/'">
+            </div>
         </header>
         <main>
             <section class="wallets">
                 <h1 class="wallets__title">Wallets </h1> 
-
-                <!-- <div class="crypto">
-                    <figure class="crypto__figure">
-                        <img
-                        src="../public/img/btc.svg"
-                        alt=""
-                        />
-                    </figure>
-                    <div class="crypto__data-conteiner">
-                        <div class="crypto__data crypto__data--currency">
-                            <p class="crypto__text crypto__text--abbreviation-currency">BTC</p>
-                            <p class="crypto__text crypto__text--value">0.00245</p>
-                        </div>
-                        <div class="crypto__data crypto__data--exchange">
-                            <p class="crypto__text crypto__text--abbreviation-currency">COP</p>
-                            <p class="crypto__text crypto__text--value">43000</p> 
-                        </div>
-                    </div>            
-                </div> -->
                 <div class="crypto">
                     <figure class="crypto__figure">
                         <img
-                        src="../public/img/eth.svg"
+                        src="img/eth.svg"
                         alt=""
                         />
                     </figure>
@@ -47,38 +31,13 @@
                 </div>                   
 
             </section>
-            
-            <!-- <section class="history">
-                <h1 class="history__title">Transaction History</h1>
-                <div>
-                    <div class="transaction transaction">
-                        <figure class="transaction__figure transaction__figure--send">
-                            <img
-                            src="../public/img/.svg"
-                            alt=""
-                            />
-                        </figure>
-                        <div class="transaction__data-conteiner" onclick="showTransactionDestiny()">
-                            <div class="transaction__data transaction__data--value">
-                                <p class="transaction__text">0.00245</p>
-                                <p class="transaction__text">BTC</p>
-                            </div>
-                            <div class="transaction__data transaction__data--destiny" id="one">
-                                <p class="transaction__text">AGJ1549AGH546</p>
-                            </div>
-                        </div>            
-                    </div> 
-                </div>
-            </section> -->
+
         </main>
-        <div style="margin: auto;" action="/logout">
-            <input type="button" value="Logout" class="button_home" onclick="window.location.href = '/'">
+        <div action="/logout" class="dotransaction">
             <input type="button" value="Do transaction" class="button_home" onclick="window.location.href = '/home/transaction?authenticated=true'">
-                            
         </div>
-        <footer>
-            <div></div>
-        </footer>
+        
+       
     </body>   
 </body>
 <%- include ('partials/footer') %>

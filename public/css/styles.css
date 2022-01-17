@@ -1,7 +1,11 @@
+/** Index **/
+
 body {    
     font-family: "Outfit", sans-serif;
     background: #3A3A3A;
 }
+
+
 
 .icon::before {
     display: inline-block;
@@ -130,6 +134,7 @@ label:hover{
 }
 /* checked */
 
+
 /** Homepage **/
 
 #homepage * {
@@ -138,9 +143,9 @@ label:hover{
     margin: 0;
   }
 
-#homepage body {    
+#homepage{    
     font-family: "Outfit", sans-serif;
-    /* background: #3A3A3A; */
+    background: #ffffff;
 }
 
 #homepage main {
@@ -241,6 +246,28 @@ label:hover{
     border-radius: 5px;
     padding: 10px;
 }
+
+#homepage .button_home{
+    background-color: #3A3A3A;
+    border: none;
+    padding: 13px 1vw;
+    text-align: center;
+    display: inline-block;
+    margin: auto;
+    width: 20vw;
+}
+
+#homepage header .button_home{
+    position: absolute;
+    top: 20px;
+    left: 85vw;
+    width: 10vw;
+}
+
+#homepage .dotransaction{
+    margin: 0 15vw;
+}
+
 
 @media only screen and (min-width: 850px){
     .container{
