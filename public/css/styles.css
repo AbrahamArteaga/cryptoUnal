@@ -62,7 +62,7 @@ body {
     margin: 0px;
 }
 
-.form-box input[type="text"], .form-box input[type="email"] , .form-box input[type="password"], .form-box button[type="submit"] {
+.form-box input[type="text"], .form-box input[type="email"] , .form-box input[type="password"], .form-box button[type="submit"]{
     border: 0;
     background: none;
     display: block;
@@ -81,7 +81,7 @@ body {
     border-color: #ffffff;
 }
 
-.form-box button[type="submit"] {
+.form-box button[type="submit"], .button_home {
     border: 0;
     background: #94B43B;
     display: block;
@@ -97,7 +97,7 @@ body {
     cursor: pointer;
 }
 
-.form-box button[type="submit"]:hover {
+.form-box button[type="submit"]:hover, .button_home {
     background: none;
 }
 

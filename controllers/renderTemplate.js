@@ -1,4 +1,5 @@
 const { render } = require('express/lib/response');
+const { getBalance } = require('../utils/getBalance')
 
 const renderLogin = (req, res) => {
     req.session.destroy();
@@ -22,12 +23,14 @@ const renderTransaction = (req, res) => {
     })
 }
 
-const renderHomepage = (req, res, user) => {
-    if (req.query.authenticated === 'true' && req.session.iduser){
-        res.render('home' , {
+const renderHomepage = (req, res) => {
+        if (req.query.authenticated === 'true' && req.session.iduser){        
+            console.log(req.session);
+        res.render('home' , {            
             title: 'Welcome',            
-            name: req.session.username
-        })
+            name: req.session.username,
+            balance:  req.session.balance
+        })        
     }
     else{
         res.send('<script> alert("The user does not exist or you entered a wrong password"); window.location.href = "/"; </script>');  

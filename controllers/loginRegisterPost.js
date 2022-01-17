@@ -1,6 +1,7 @@
 const {verify_user, verify_email , add_user_db} = require('../models/connectUserDb');
 const {createEthereumWallet} = require('../utils/createWallet')
 const {decrypt_wallet} = require('../utils/decrypt_wallet')
+const {consultBalance} = require('../utils/getBalance')
 const {add_Wallet, get_Wallet} = require('../models/connectWalletDb')
 
 // La función getUserLogin es asincrona y espera el resultado de la promesa de verify_user
@@ -12,9 +13,9 @@ const getUserLogin = async(req,res) => {
         req.session.iduser = result[0][0].iduser;        
         let cartera = await get_Wallet(req.session.iduser);
         cartera = cartera[0][0].wallet_address;        
-        cartera = await decrypt_wallet(cartera, password);
+        cartera = await decrypt_wallet(cartera, password);        
         req.session.publicKey = cartera[0].address;
-        
+        req.session.balance = await consultBalance(req.session.publicKey);
         res.status(200).redirect('/home?authenticated=true');
     }
     else{
