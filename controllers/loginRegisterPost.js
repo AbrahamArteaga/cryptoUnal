@@ -15,6 +15,7 @@ const getUserLogin = async(req,res) => {
         cartera = cartera[0][0].wallet_address;        
         cartera = await decrypt_wallet(cartera, password);        
         req.session.publicKey = cartera[0].address;
+        req.session.privateKey = cartera[0].privateKey;
         req.session.balance = await consultBalance(req.session.publicKey);
         res.status(200).redirect('/home?authenticated=true');
     }

@@ -2,9 +2,9 @@ const Web3 = require('web3');
 const ETx = require('ethereumjs-tx').Transaction;
 const { serialize } = require('v8');
 
-infuraNode = 'https://mainnet.infura.io/v3/6c358fda8bc84a54949cd6ca0c321b98';
+infuraNode = 'https://ropsten.infura.io/v3/6c358fda8bc84a54949cd6ca0c321b98';
 ganacheNode = 'HTTP://127.0.0.1:7545';
-web3 = new Web3(ganacheNode);
+web3 = new Web3(infuraNode);
 
 //check eth balance
 
