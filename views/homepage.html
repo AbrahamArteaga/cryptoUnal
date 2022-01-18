@@ -1,81 +1,126 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet"href="../public/css/styles-homepage.css">
-    </head>
-    <body>
-        <header>
-            <h1 class="page__title">Crypto<b class="page__title page__title--bold">UNAL</b></h1>
-        </header>
-        <main>
-            <section class="wallets">
-                <h1 class="wallets__title">Wallets</h1> 
 
-                <div class="crypto">
-                    <figure class="crypto__figure">
-                        <img
-                        src="../public/img/btc.svg"
-                        alt=""
-                        />
-                    </figure>
-                    <div class="crypto__data-conteiner">
-                        <div class="crypto__data crypto__data--currency">
-                            <p class="crypto__text crypto__text--abbreviation-currency">BTC</p>
-                            <p class="crypto__text crypto__text--value">0.00245</p>
-                        </div>
-                        <div class="crypto__data crypto__data--exchange">
-                            <p class="crypto__text crypto__text--abbreviation-currency">COP</p>
-                            <p class="crypto__text crypto__text--value">43000</p> 
-                        </div>
-                    </div>            
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/styles-homepage.css">
+</head>
+
+<body>
+    <header>
+        <h1 class="page__title">Crypto<b class="page__title page__title--bold">UNAL</b></h1>
+    </header>
+    <main>
+        <section class="wallets">
+            <h1 class="wallets__title">Wallets</h1>
+
+            <div class="crypto">
+                <figure class="crypto__figure">
+                    <img src="../public/img/btc.svg" alt="" />
+                </figure>
+                <div class="crypto__data-conteiner">
+                    <div class="crypto__data crypto__data--currency">
+                        <p class="crypto__text crypto__text--abbreviation-currency">BTC</p>
+                        <p class="crypto__text crypto__text--value">0.00245</p>
+                    </div>
+                    <div class="crypto__data crypto__data--exchange">
+                        <p class="crypto__text crypto__text--abbreviation-currency">COP</p>
+                        <p class="crypto__text crypto__text--value">43000</p>
+                    </div>
                 </div>
-                <div class="crypto">
-                    <figure class="crypto__figure">
-                        <img
-                        src="../public/img/eth.svg"
-                        alt=""
-                        />
-                    </figure>
-                    <div class="crypto__data-conteiner">
-                        <div class="crypto__data crypto__data--currency">
-                            <p class="crypto__text crypto__text--abbreviation-currency">ETH</p>
-                            <p class="crypto__text crypto__text--value">0.00245</p>
-                        </div>
-                        <div class="crypto__data crypto__data--exchange">
-                            <p class="crypto__text crypto__text--abbreviation-currency">COP</p>
-                            <p class="crypto__text crypto__text--value">43000</p> 
-                        </div>
-                    </div>            
-                </div>               
-            </section>
-            <section class="history">
-                <h1 class="history__title">Transaction History</h1>
-                <div>
-                    <div class="transaction transaction">
-                        <figure class="transaction__figure transaction__figure--send">
-                            <img
-                            src="../public/img/.svg"
-                            alt=""
-                            />
-                        </figure>
-                        <div class="transaction__data-conteiner" onclick="showTransactionDestiny()">
-                            <div class="transaction__data transaction__data--value">
-                                <p class="transaction__text">0.00245</p>
-                                <p class="transaction__text">BTC</p>
-                            </div>
-                            <div class="transaction__data transaction__data--destiny" id="one">
-                                <p class="transaction__text">AGJ1549AGH546</p>
-                            </div>
-                        </div>            
-                    </div> 
+            </div>
+            <div class="crypto">
+                <figure class="crypto__figure">
+                    <img src="../public/img/eth.svg" alt="" />
+                </figure>
+                <div class="crypto__data-conteiner">
+                    <div class="crypto__data crypto__data--currency">
+                        <p class="crypto__text crypto__text--abbreviation-currency">ETH</p>
+                        <p class="crypto__text crypto__text--value">0.00245</p>
+                    </div>
+                    <div class="crypto__data crypto__data--exchange">
+                        <p class="crypto__text crypto__text--abbreviation-currency">COP</p>
+                        <p class="crypto__text crypto__text--value">43000</p>
+                    </div>
                 </div>
-            </section>
-        </main>
-        <footer>
-            <div></div>
-        </footer>
-    </body>   
-    
+            </div>
+        </section>
+        <section class="history">
+            <h1 class="history__title">Transaction History</h1>
+            <div>
+                <div class="transaction transaction">
+                    <figure class="transaction__figure transaction__figure--send">
+                        <img src="../public/img/.svg" alt="" />
+                    </figure>
+                    <div class="transaction__data-conteiner" onclick="showTransactionDestiny()">
+                        <div class="transaction__data transaction__data--value">
+                            <p class="transaction__text">0.00245</p>
+                            <p class="transaction__text">BTC</p>
+                        </div>
+                        <div class="transaction__data transaction__data--destiny" id="one">
+                            <p class="transaction__text">AGJ1549AGH546</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <section class="navigation">
+        <div id="navigation">
+            <ul>
+                <li class="nav-list active">
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="arrow-redo-outline"></ion-icon>
+                        </span>
+                        <span class="text">Transactions</span>
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="cart-outline"></ion-icon>
+                        </span>
+                        <span class="text">Market</span>
+                    </a>
+                </li>
+                <li class="nav-list">
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="text">Log out</span>
+                    </a>
+                </li>
+                <div class="indicator"></div>
+            </ul>
+        </div>
+        </section>
+    </footer>
+
+    <script>
+        const list = document.querySelectorAll('.nav-list');
+        function activeLink(){
+            list.forEach((item) =>
+            item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) =>
+        item.addEventListener('click', activeLink));
+    </script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
 </html>
