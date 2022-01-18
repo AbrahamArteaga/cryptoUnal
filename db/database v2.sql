@@ -68,7 +68,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users`(iduser,email,hash_password) VALUES (1,'user1@email.com','pass1'),(2,'user2@email.com','pass2'),(3,'user3@email.com','pass3'),(4,'user4@email.com','pass4'),(5,'user5@email.com','pass5');
+INSERT INTO `users`(iduser,email,hash_password) VALUES (1,'user1@email.com','1'),(2,'user2@email.com','1'),(3,'user3@email.com','1'),(4,'user4@email.com','1'),(5,'user5@email.com','1');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
