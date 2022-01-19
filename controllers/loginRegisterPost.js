@@ -5,15 +5,16 @@ const {consultBalance} = require('../utils/getBalance')
 const {add_Wallet, get_Wallet} = require('../models/connectWalletDb')
 
 // La función getUserLogin es asincrona y espera el resultado de la promesa de verify_user
-const getUserLogin = async(req,res) => {
-    const {email , password } = req.body;   
-    let result = await verify_user(email,password);    
+const getUserLogin = async (req, res) => {
+    web3.eth.accounts.wallet.clear();
+    const { email, password } = req.body;   
+    let result = await verify_user(email, password); 
     if (result[0].length !== 0){ 
         req.session.username =  result[0][0].username;                
         req.session.iduser = result[0][0].iduser;        
         let cartera = await get_Wallet(req.session.iduser);
-        cartera = cartera[0][0].wallet_address;        
-        cartera = await decrypt_wallet(cartera, password);        
+        cartera = cartera[0][0].wallet_address;
+        cartera = decrypt_wallet(cartera, password); 
         req.session.publicKey = cartera[0].address;
         req.session.privateKey = cartera[0].privateKey;
         req.session.balance = await consultBalance(req.session.publicKey);
