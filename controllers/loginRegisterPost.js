@@ -19,7 +19,7 @@ const getUserLogin = async (req, res) => {
         req.session.publicKey = cartera[0].address;
         req.session.privateKey = cartera[0].privateKey;
         req.session.balance = await consultBalance(req.session.publicKey);
-        getHistorial(req.session.publicKey);
+        req.session.transaction=await getHistorial(req.session.publicKey);
         res.status(200).redirect('/home?authenticated=true');
     }
     else{

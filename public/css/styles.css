@@ -267,6 +267,25 @@ label:hover{
     margin: 0 15vw;
 }
 
+.transaction_title{
+    color: #3A4F3A;
+    text-align: center;
+    padding: 20px 0;
+}
+
+
+table {
+    width: 100%;
+    background-color: #3A4F3A;
+    border-collapse: collapse;
+    border-width: 2px;
+    border-color: #3A4F3A;
+    border-style: solid;
+    border-radius: 12px;
+    margin-top: 20px;
+    color: #000000;
+  }
+  
 /** Navigation tab**/
 
 #navigation *{

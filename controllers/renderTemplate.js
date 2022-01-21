@@ -26,10 +26,12 @@ const renderTransaction = (req, res) => {
 const renderHomepage = (req, res) => {
         if (req.query.authenticated === 'true' && req.session.iduser){        
             console.log(req.session);
+            console.log(req.session.transaction);
         res.render('home' , {            
             title: 'Welcome',            
             name: req.session.username,
-            balance:  req.session.balance
+            balance:  req.session.balance,
+            transactions: req.session.transaction
         })        
     }
     else{
