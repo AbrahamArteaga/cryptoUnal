@@ -1,15 +1,20 @@
 <%- include('partials/head') %>
-<body>
+<body id="transactions">
+
+    <header>
+        <h1 class="page__title">Crypto<b class="page__title page__title--bold">UNAL</b></h1>
+        <h2 class="tittle">Envia tus ETH</h2>
+    </header>
+    
     <div class="container">        
         <form action="/transaction" class="form-box animated fadeInUp" method="POST">
             
             <div class="inner_container">
-                
                 <div>
-                    <input type="text" placeholder="public key" name="sender" required>
+                    <input type="text" placeholder="public key" name="sender" value="<%= publicKey %>" required>
                 </div>
                 <div>
-                    <input type="text" placeholder="private key" name="senderkey" required>
+                    <input type="text" placeholder="private key" name="senderkey" value="<%= privateKey %> " required>
                 </div>
 
                 <div>
@@ -28,5 +33,61 @@
             
         </form>        
     </div>
+
+    <footer>
+        <section class="navigation">
+            <div id="navigation">
+                <ul>
+                    <li class="nav-list">
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="home-outline"></ion-icon>
+                            </span>
+                            <span class="text">Home</span>
+                        </a>
+                    </li>
+                    <li class="nav-list active">
+                        <a onclick="window.location.href = '/home/transaction?authenticated=true'">
+                            <span class="icon">
+                                <ion-icon name="arrow-redo-outline"></ion-icon>
+                            </span>
+                            <span class="text">Transactions</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a href="#">
+                            <span class="icon">
+                                <ion-icon name="cart-outline"></ion-icon>
+                            </span>
+                            <span class="text">Market</span>
+                        </a>
+                    </li>
+                    <li class="nav-list">
+                        <a onclick="window.location.href = '/'">
+                            <span class="icon">
+                                <ion-icon name="log-out-outline"></ion-icon>
+                            </span>
+                            <span class="text">Log out</span>
+                        </a>
+                    </li>
+                    <div class="indicator"></div>
+                </ul>
+            </div>
+        </section>
+    </footer>
+
+    <script>
+        const list = document.querySelectorAll('.nav-list');
+        function activeLink() {
+            list.forEach((item) =>
+                item.classList.remove('active'));
+            this.classList.add('active');
+        }
+        list.forEach((item) =>
+            item.addEventListener('click', activeLink));
+    </script>
+    
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 <%- include ('partials/footer') %>

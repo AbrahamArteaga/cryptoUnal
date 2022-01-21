@@ -65,7 +65,7 @@ body {
     margin: 0px;
 }
 
-.form-box input[type="text"], .form-box input[type="email"] , .form-box input[type="password"], .form-box button[type="submit"]{
+.form-box input[type="text"], .form-box input[type="number"], .form-box input[type="email"] , .form-box input[type="password"], .form-box button[type="submit"]{
     border: 0;
     background: none;
     display: block;
@@ -152,13 +152,13 @@ label:hover{
     flex-direction: row;
 }
 
-#homepage .page__title {
+.page__title {
     color: #3A4F3A;
     text-align: center;
     padding: 20px 0;
 }
 
-#homepage .page__title--bold {
+.page__title--bold {
     color: #94B43B;
 }
 
@@ -297,6 +297,7 @@ table {
 .navigation{
     position: fixed;
     bottom: 0;
+    left: 0;
     margin-top: 100px; /* se puede quitar despues del fixed*/
     display: flex;
     justify-content: center;
@@ -418,6 +419,56 @@ table {
 
 #navigation ul li:nth-child(4).active ~ .indicator{
     transform: translateX(calc(12.5vw * 7 - 35px)); /* valor de calc es el #navigation ul li width*/
+}
+
+
+/* Transactions*/
+
+#transactions header{
+    display: flex;
+    flex-direction: row;
+    padding-top: 2%;
+    height: 15vh;
+    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+#transactions header h1{
+    width: 50%;
+}
+
+#transactions header h2{
+    width: 50%;
+    text-align: center;
+    padding-top: 30px;
+    color: #fff;
+    font-weight: 600;
+}
+
+#transactions .container{
+    height: 50vh;
+    padding-top: 10%;
+    justify-content: flex-start;
+}
+
+#transactions .container button{
+    text-align: center;
+    font-weight: 600;
+    padding: 5%;
+    margin-top: 60%;
+    min-width: fit-content;
+}
+
+#transactions #navigation .indicator{
+    border: 6px solid #3A3A3A;
+}
+
+#transactions #navigation .indicator::before{
+    box-shadow: 1px -10px 0 0#3A3A3A;
+}
+
+#transactions #navigation .indicator::after{
+    box-shadow: -1px -10px 0 0#3A3A3A;
 }
 
 /**  Responsive **/

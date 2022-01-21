@@ -18,8 +18,11 @@ const renderRegister = (req, res) => {
 }
 
 const renderTransaction = (req, res) => {
+    console.log('TRANSACTIONS', req.session.publicKey, req.session.privateKey)
     res.render('transaction', {
-    title: 'Transactions'
+        title: 'Transactions',
+        publicKey: req.session.publicKey,
+        privateKey: req.session.privateKey
     })
 }
 
