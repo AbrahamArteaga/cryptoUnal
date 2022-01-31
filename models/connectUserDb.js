@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 
-const verify_user = (username, hashedPassword) => {
+const verify_user = (username) => {
     // Promesa de la conexión a base de datos y la query de sql
     return new Promise((resolve,reject)=>{
         let connection = mysql.createConnection({
@@ -10,13 +10,14 @@ const verify_user = (username, hashedPassword) => {
             database: 'CryptoUNAL'
         });
         
-        connection.query( `call retrieve_user_data("${username}", "${hashedPassword}")`, ( err, rows ) => {
+        connection.query( `call retrieve_user_data("${username}")`, ( err, rows ) => {
             if ( err ){
-                connection.end();
+                connection.end();                
                 reject( err );
             }
             else{
                 connection.end();
+                console.log(rows);
                 resolve( rows );
             }
         });
@@ -52,7 +53,7 @@ const add_user_db = (name, email, password) => {
             user: 'EDIT_CRYPTO_USER',
             password: '123',
             database: 'CryptoUNAL'
-        });
+        });  
         
         connection.query( `call register_user("${name}", "${email}", "${password}")`, ( err, rows ) => {
             if ( err ){

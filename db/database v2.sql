@@ -68,7 +68,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users`(iduser,email,hash_password) VALUES (1,'user1@email.com','1'),(2,'user2@email.com','1'),(3,'user3@email.com','1'),(4,'user4@email.com','1'),(5,'user5@email.com','1');
+INSERT INTO `users`(iduser,email,hash_password) VALUES (1,'user1@email.com','$2b$10$w6haV5VeL.rDgR9aJ0nqRO1S1vw6YiEt7FhJu8qZXKszKaptbmg2a'),(2,'user2@email.com','$2b$10$0PG6wzxsbDUUw8auoZczCumyuqno0gLwsFc5FhhrqOkIBM0KhMLoG'),(3,'user3@email.com','$2b$10$.0CGoVjWFkUE1meJMAYGnutbb14nSVOOOIkn0BJODL6o9dwJVuYL6'),(4,'user4@email.com','$2b$10$ZgvgA3U0JD2dKslfNcAvXeAnrvW9SYrm00Em9A1rDG7YnhXVr22Z.'),(5,'user5@email.com','$2b$10$nK.Ch4O6nc/T/eUkgwQS1ubndDRlJwKirOcU0jmhV.ZLnn3BrVsLy');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,12 +115,13 @@ DROP PROCEDURE IF EXISTS retrieve_user_data;
 DROP PROCEDURE IF EXISTS verify_email_register;
 DROP PROCEDURE IF EXISTS register_user;
 DROP PROCEDURE IF EXISTS createWallet;
+DROP PROCEDURE IF EXISTS get_encryptedwallet;
 
 delimiter //
 
-CREATE PROCEDURE retrieve_user_data (IN email_form varchar(256), IN hashed_password varchar(256))
+CREATE PROCEDURE retrieve_user_data (IN email_form varchar(256))
 begin
-SELECT * FROM users WHERE (email = email_form AND hash_password = hashed_password);
+SELECT * FROM users WHERE (email = email_form);
 end;
 //
 
@@ -143,6 +144,6 @@ begin
 end;
 //
 
-CREATE PROCEDURE add_Transaction (IN id var )
+/* CREATE PROCEDURE add_Transaction (IN id var ) */
 
 delimiter ;

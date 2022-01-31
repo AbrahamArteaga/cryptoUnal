@@ -14,7 +14,6 @@ web3 = new Web3(infuraNode);
 // const priva2 = new Buffer.from('0f248d097184df3bc6f71caa97410615944025534c444e5941806b7f640d93f4', 'hex');
 
 
-
 const signTransaction = (sender, senderkey, recipient, amount) => {
     
     web3.eth.getBalance(sender, (err, balance) => {
