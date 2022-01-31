@@ -5,6 +5,7 @@ const {consultBalance} = require('../utils/getBalance')
 const {getHistorial} = require('../utils/getHistorial')
 const {hashPassword, comparePassword} = require('../utils/hashPassword')
 const {add_Wallet, get_Wallet} = require('../models/connectWalletDb')
+const fs = require('fs').promises;
 
 // La función getUserLogin es asincrona y espera el resultado de la promesa de verify_user
 const getUserLogin = async (req, res) => {
@@ -24,8 +25,16 @@ const getUserLogin = async (req, res) => {
             req.session.privateKey = cartera[0].privateKey;
             req.session.balance = await consultBalance(req.session.publicKey);
             req.session.transaction=await getHistorial(req.session.publicKey);
+            console.log('tttttt', req.session.transaction);
+            let data = JSON.stringify(req.session.transaction);
+            await fs.writeFile('transactions.json', data, (err) => {
+                if (err) {
+                    throw err;
+                }
+                console.log("JSON data is saved.");
+            });
             res.status(200).redirect('/home?authenticated=true');      
-        }        
+        }       
     }
     else{
         res.status(401).redirect('/home')

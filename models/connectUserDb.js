@@ -16,8 +16,7 @@ const verify_user = (username) => {
                 reject( err );
             }
             else{
-                connection.end();
-                console.log(rows);
+                connection.end();                
                 resolve( rows );
             }
         });
