@@ -27,12 +27,12 @@ const comparePassword = (password, hash) => {
 };
 
 
-(async function(){
+/*(async function(){
     let a = await hashPassword("1");
     //let b = await comparePassword("123", a);
     console.log(a);
 })();
-
+*/
 
 module.exports = {hashPassword, comparePassword}
 

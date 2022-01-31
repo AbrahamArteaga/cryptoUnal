@@ -22,10 +22,10 @@ const getUserLogin = async (req, res) => {
             cartera = cartera[0][0].wallet_address;
             cartera = decrypt_wallet(cartera, password); 
             req.session.publicKey = cartera[0].address;
-            req.session.privateKey = cartera[0].privateKey;
+            req.session.privateKey = cartera[0].privateKey.slice(2);
             req.session.balance = await consultBalance(req.session.publicKey);
             req.session.transaction=await getHistorial(req.session.publicKey);
-            console.log('tttttt', req.session.transaction);
+            // console.log('tttttt', req.session.transaction);
             let data = JSON.stringify(req.session.transaction);
             await fs.writeFile('transactions.json', data, (err) => {
                 if (err) {

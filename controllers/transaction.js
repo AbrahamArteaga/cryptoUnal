@@ -47,7 +47,7 @@ const signTransaction = (sender, senderkey, recipient, amount) => {
 
 const doTransaction = async(req, res) => {
     const { sender, senderkey, recipient, amount } = req.body;
-    console.log(sender);
+    console.log("Sender", sender);
     await signTransaction(sender, senderkey, recipient, amount);
     res.send('transaction made');
 }

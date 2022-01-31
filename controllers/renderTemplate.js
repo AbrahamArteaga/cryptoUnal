@@ -18,7 +18,7 @@ const renderRegister = (req, res) => {
 }
 
 const renderTransaction = (req, res) => {
-    console.log('TRANSACTIONS', req.session.publicKey, req.session.privateKey)
+    // console.log('TRANSACTIONS', req.session.publicKey, req.session.privateKey)
     res.render('transaction', {
         title: 'Transactions',
         publicKey: req.session.publicKey,
@@ -28,13 +28,13 @@ const renderTransaction = (req, res) => {
 
 const renderHomepage = (req, res) => {
         if (req.query.authenticated === 'true' && req.session.iduser){        
-            console.log(req.session);
-            console.log(req.session.transaction);
-        res.render('home' , {            
-            title: 'Welcome',            
-            name: req.session.username,
-            balance:  req.session.balance,
-            transactions: req.session.transaction
+            // console.log(req.session);
+            // console.log(req.session.transaction);
+            res.render('home' , {            
+                title: 'Welcome',            
+                name: req.session.username,
+                balance:  req.session.balance,
+                transactions: req.session.transaction
         })        
     }
     else{
