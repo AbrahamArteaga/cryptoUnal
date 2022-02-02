@@ -19,8 +19,8 @@ const getUserLogin = async (req, res) => {
             req.session.username =  result[0][0].username;                
             req.session.iduser = result[0][0].iduser;        
             let cartera = await get_Wallet(req.session.iduser);
-            cartera = cartera[0][0].wallet_address;
-            cartera = decrypt_wallet(cartera, password); 
+            cartera = cartera[0][0].wallet_address;            
+            cartera = await decrypt_wallet(cartera, password);             
             req.session.publicKey = cartera[0].address;
             req.session.privateKey = cartera[0].privateKey.slice(2);
             req.session.balance = await consultBalance(req.session.publicKey);

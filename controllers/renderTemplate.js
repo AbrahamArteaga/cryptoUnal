@@ -3,7 +3,7 @@ const { getBalance } = require('../utils/getBalance')
 
 const renderLogin = (req, res) => {
     req.session.destroy();
-    console.log(req.session);
+    // console.log(req.session);
     res.render('index', {
         title: `Welcome to cryptoUNAL`
     })
@@ -28,7 +28,7 @@ const renderTransaction = (req, res) => {
 
 const renderHomepage = (req, res) => {
         if (req.query.authenticated === 'true' && req.session.iduser){        
-            // console.log(req.session);
+            console.log(req.session);
             // console.log(req.session.transaction);
             res.render('home' , {            
                 title: 'Welcome',            
