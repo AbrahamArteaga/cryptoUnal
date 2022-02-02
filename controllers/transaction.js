@@ -14,19 +14,21 @@ web3 = new Web3(infuraNode);
 // const priva2 = new Buffer.from('0f248d097184df3bc6f71caa97410615944025534c444e5941806b7f640d93f4', 'hex');
 
 
-const signTransaction = (sender, senderkey, recipient, amount) => {
+const signTransaction = async(sender, senderkey, recipient, amount) => {
     
-    web3.eth.getBalance(sender, (err, balance) => {
+    /* wait web3.eth.getBalance(sender, (err, balance) => {
         console.log(web3.utils.fromWei(balance, 'ether'))
     })
 
     web3.eth.getBalance(recipient, (err, balance) => {
         console.log(web3.utils.fromWei(balance, 'ether'))
     })
-
-
-    web3.eth.getTransactionCount(sender, (err, txCount) => {
-        let rawTx = {                                           // create the transaction
+    */
+    try{
+        let txCount = await web3.eth.getTransactionCount(sender);
+    
+        let rawTx = { 
+            // create the transaction
             nonce: web3.utils.toHex(txCount),
             gasPrice: web3.utils.toHex(web3.utils.toWei('2', 'gwei')),
             gasLimit: web3.utils.toHex(2100000),
@@ -34,24 +36,31 @@ const signTransaction = (sender, senderkey, recipient, amount) => {
             value: web3.utils.toHex(web3.utils.toWei(amount, 'ether'))
         }
 
-        let tx = new ETx(rawTx, { 'chain': 'ropsten' })                             //sign the transaction
-        tx.sign(new Buffer.from(senderkey, 'hex'))
+        let tx = new ETx(rawTx, { 'chain': 'ropsten' })                             
+        //sign the transaction
+        await tx.sign(new Buffer.from(senderkey, 'hex'))
 
-        serializedTx = tx.serialize().toString('hex')
+        let serializedTx = await tx.serialize().toString('hex')
 
-        web3.eth.sendSignedTransaction('0x' + serializedTx).on('receipt', console.log)
+        await web3.eth.sendSignedTransaction('0x' + serializedTx).on('receipt', console.log);       
 
-    });
-
+        return true;
+    }catch(error){
+        console.error(error);
+        return false;
+    } 
 };
 
 const doTransaction = async(req, res) => {
     const { sender, senderkey, recipient, amount } = req.body;
     console.log("Sender", sender);
-    await signTransaction(sender, senderkey, recipient, amount);
-    res.send('transaction made');
+    let result = await signTransaction(sender, senderkey, recipient, amount);  
+    if (result){
+        res.send('<script> alert("The transaction was made. Wait some time before it updates in the blockachain"); window.location.href = "/home?authenticated=true"; </script>'); 
+    }
+    else{
+        res.send('<script> alert("There was an error in the transaction"); window.location.href = "/home/transaction"; </script>'); 
+    }
 }
-
-
 
 module.exports = {doTransaction, signTransaction};

@@ -7,7 +7,7 @@
     </header>
     
     <div class="container">        
-        <form action="/transaction" class="form-box animated fadeInUp" method="POST">
+        <form class="form-box animated fadeInUp" method="POST">
             
             <div class="inner_container">
                 <div>
@@ -22,7 +22,7 @@
                 </div>            
                 
                 <div>
-                    <input type="number" name="amount" placeholder="amount(eth)" min="0" required>
+                    <input type="number" name="amount" placeholder="amount(eth)" min="0" step="0.01" required>
                 </div>   
 
                 <button type="submit">
@@ -47,7 +47,7 @@
                         </a>
                     </li>
                     <li class="nav-list active">
-                        <a onclick="window.location.href = '/home/transaction?authenticated=true'">
+                        <a onclick="window.location.href = '/home/transaction'">
                             <span class="icon">
                                 <ion-icon name="arrow-redo-outline"></ion-icon>
                             </span>

@@ -5,15 +5,18 @@ ganacheNode = 'HTTP://127.0.0.1:7545';
 web3 = new Web3(new Web3.providers.HttpProvider(infuraNode));
 
 async function consultBalance(recipient){
-  let bal;
-  await web3.eth.getBalance(recipient, (err, balance) => {
-    if(err) {
-      console.log(err);
-      return false;
-    }
-    bal = web3.utils.fromWei(String(balance), 'ether')
-  })
-  return bal
+  if (typeof recipient === "string" && recipient.length === 42){
+    let bal;
+    await web3.eth.getBalance(recipient, (err, balance) => {
+      if(err) {
+        console.log(err);
+        return false;
+      }
+      bal = web3.utils.fromWei(String(balance), 'ether')
+    })
+    return bal
+  }
+  return false;  
 }
 
 module.exports = {consultBalance}

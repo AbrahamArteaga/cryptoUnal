@@ -4,7 +4,7 @@ infuraNode = 'https://ropsten.infura.io/v3/6c358fda8bc84a54949cd6ca0c321b98';
 ganacheNode = 'HTTP://127.0.0.1:7545';
 web3 = new Web3(infuraNode);
 
-async function decrypt_wallet(encrypted_wallet, key="") {       
+async function decrypt_wallet(encrypted_wallet={} , key="") {       
     if(typeof encrypted_wallet === "object" && typeof key === "string"){
         try{
             let wallet = [encrypted_wallet];        
@@ -12,7 +12,7 @@ async function decrypt_wallet(encrypted_wallet, key="") {
             return decryptedWallet;
         }
         catch(error){            
-            return "Clave erronea o vacia";
+            return "Cartera no valida, clave erronea o vacia";
         }        
     }
     return false;

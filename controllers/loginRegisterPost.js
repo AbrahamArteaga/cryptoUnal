@@ -41,12 +41,16 @@ const getUserLogin = async (req, res) => {
 }
 
 const registerUser = async(req,res) => {
-    const {name, email, password, password_confirmation, bitcoin, ethereum} = req.body;    
+    const {name, email, password, password_confirmation, bitcoin, ethereum} = req.body;   
+
     result = await verify_email(email);    
     if (result[0].length === 0){
         if (password !== password_confirmation){
             res.send('<script> alert("The password confirmation does not match"); window.location.href = "/register"; </script>');        
         }        
+        else if (password.length < 8){
+            res.send('<script> alert("The password should be longer than 8 characters"); window.location.href = "/register"; </script>');        
+        }
         else{
             const hashedPassword = await hashPassword(password)
             let id = await add_user_db(name,email,hashedPassword);                     
@@ -59,14 +63,11 @@ const registerUser = async(req,res) => {
                 res.send('<script> alert("The account has been created with an ethereum wallet encrypted using your account password. Don not share it!"); window.location.href = "/"; </script>');           
             }
             else{
-                res.send('<script> alert("The account has been created with no wallets"); window.location.href = "/"; </script>');               }           
+                res.send('<script> alert("The account has been created with no wallets"); window.location.href = "/"; </script>');}           
             
         }
     }else
         res.send('<script> alert("The email is already registered"); window.location.href = "/register"; </script>');    
 }
-
-
-
 
 module.exports = {getUserLogin, registerUser}; 

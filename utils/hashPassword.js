@@ -3,36 +3,42 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
 const hashPassword = (password) =>{    
-    return new Promise((resolve,reject) => {
-        bcrypt.hash(password, saltRounds, (err,hash) => {
-            if (hash){
-                resolve(hash);
-            }
-            else {
-                reject (err);
-            }
-        })
-    }).then(hash => hash).catch(err=> console.log(err));
+    if(typeof password === "string" && password.length>0){
+        return new Promise((resolve,reject) => {
+            bcrypt.hash(password, saltRounds, (err,hash) => {
+                if (hash){
+                    resolve(hash);
+                }
+                else {
+                    reject (err);
+                }
+            })
+        }).then(hash => hash).catch(err=> console.log(err));
+    }
+    return false;    
 };
 
 const comparePassword = (password, hash) => {
-    return new Promise((resolve,reject) => {
-        bcrypt.compare(password, hash, (err, result) => {
-            if (result)
-                resolve(result);
-            else
-                reject.err;
-        });
-    }).then(result => result).catch(err=> console.log(err));
+    if(typeof password === "string" && typeof  hash === "string" &&  password.length>0 && hash.length === 60){
+        return new Promise((resolve,reject) => {
+            bcrypt.compare(password, hash, (err, result) => {
+                if (result)
+                    resolve(result);
+                else
+                    reject.err;
+            });
+        }).then(result => result).catch(err=> console.log(err));
+    }
+    return false;
 };
 
 
-/*(async function(){
-    let a = await hashPassword("1");
-    //let b = await comparePassword("123", a);
-    console.log(a);
-})();
-*/
+// (async function(){
+//     let a = await hashPassword("12345678");
+//     //let b = await comparePassword("123", a);
+//     console.log(a);
+// })();
+
 
 module.exports = {hashPassword, comparePassword}
 
