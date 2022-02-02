@@ -9,7 +9,7 @@ async function consultBalance(recipient){
   await web3.eth.getBalance(recipient, (err, balance) => {
     if(err) {
       console.log(err);
-      return;
+      return false;
     }
     bal = web3.utils.fromWei(String(balance), 'ether')
   })

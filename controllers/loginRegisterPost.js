@@ -25,12 +25,7 @@ const getUserLogin = async (req, res) => {
             req.session.privateKey = cartera[0].privateKey.slice(2);
             req.session.balance = await consultBalance(req.session.publicKey);
             req.session.transaction=await getHistorial(req.session.publicKey);
-<<<<<<< HEAD
-            // console.log('tttttt', req.session.transaction);
-            let data = JSON.stringify(req.session.transaction);
-=======
             let data = JSON.stringify([req.session.publicKey, req.session.transaction]);
->>>>>>> 49b477bece213f82b4c7d66f89de7397b00f0365
             await fs.writeFile('transactions.json', data, (err) => {
                 if (err) {
                     throw err;
