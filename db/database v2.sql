@@ -24,16 +24,11 @@ DROP TABLE IF EXISTS `transactions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `transactions` (
-  `idtransaction` varchar(256) NOT NULL,
-  `wallet_sender` varchar(256) DEFAULT NULL,
-  `wallet_receiver` varchar(256) DEFAULT NULL,
-  `amount` decimal(10,5) DEFAULT NULL,
-  `gas_fee` decimal(10,5) DEFAULT NULL,
-  `wallets_idwallet` int NOT NULL,
-  PRIMARY KEY (`idtransaction`),
-  KEY `fk_transactions_wallets_idx` (`wallets_idwallet`),
-  CONSTRAINT `fk_transactions_wallets` FOREIGN KEY (`wallets_idwallet`) REFERENCES `wallets` (`idwallet`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
+  `iduser` int NOT NULL,
+  `transactions_content` JSON DEFAULT NULL,  
+  PRIMARY KEY (`iduser`),
+  FOREIGN KEY (`iduser`) REFERENCES users(`iduser`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +37,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,'1','2',10.00100,0.00039,1),(2,'1','2',34.00000,0.10000,5),(3,'3','2',493.45540,0.04900,2),(4,'2','3',493.45540,0.04900,2),(5,'5','6',5839.34000,20.00000,6);
+/*INSERT INTO `transactions` VALUES (1,'1','2',10.00100,0.00039,1),(2,'1','2',34.00000,0.10000,5),(3,'3','2',493.45540,0.04900,2),(4,'2','3',493.45540,0.04900,2),(5,'5','6',5839.34000,20.00000,6); */
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,34 +111,49 @@ DROP PROCEDURE IF EXISTS verify_email_register;
 DROP PROCEDURE IF EXISTS register_user;
 DROP PROCEDURE IF EXISTS createWallet;
 DROP PROCEDURE IF EXISTS get_encryptedwallet;
+DROP PROCEDURE IF EXISTS get_user_transaction;
+DROP PROCEDURE IF EXISTS update_user_transactions;
 
 delimiter //
 
 CREATE PROCEDURE retrieve_user_data (IN email_form varchar(256))
-begin
+BEGIN
 SELECT * FROM users WHERE (email = email_form);
-end;
-//
-
-CREATE PROCEDURE verify_email_register (IN email_form varchar(256))
-begin
-SELECT * FROM users WHERE email = email_form;
 END;
 //
 
 CREATE PROCEDURE register_user (IN user varchar(256), IN email_form varchar(256), IN hashed_password varchar(256)) 
-begin 
+BEGIN 
 INSERT INTO users(username, email, hash_password) VALUES (user,email_form,hashed_password);
 SELECT users.iduser FROM users WHERE users.email = email_form;
-end;
+END;
 //
 
-CREATE PROCEDURE get_encryptedwallet (IN id int)
-begin
+CREATE PROCEDURE get_encryptedwallet (IN id INT)
+BEGIN
 	SELECT * FROM wallets WHERE users_iduser = id;
-end;
+END;
 //
 
+CREATE PROCEDURE get_user_transaction(IN id INT)
+BEGIN
+  SELECT transactions_content FROM transactions WHERE iduser = id;
+END;
+//
+
+CREATE PROCEDURE update_user_transactions(IN id INT, IN trans JSON)
+BEGIN
+  DECLARE v_transaction_exist INT;  
+  SELECT iduser INTO v_transaction_exist FROM transactions WHERE iduser = id;
+
+  IF v_transaction_exist IS NULL THEN
+    INSERT INTO transactions VALUES( id, trans);
+  ELSE
+    UPDATE transactions SET transactions_content = trans WHERE iduser = id;
+  END IF;
+
+END;
+//
 /* CREATE PROCEDURE add_Transaction (IN id var ) */
 
 delimiter ;

@@ -12,11 +12,12 @@ async function getHistorial(address){
       return response.data.result;
     } catch (error) {
       console.error(error);
-      return "Direccion incorrecta"
+      return "Error en la consulta"
     }
   }
   return false;
 }
+
 
 // (async function(){
 //   let a = await getHistorial("0x6Fcb75934649e3bF6C18C3A5E02b0EC632813823");

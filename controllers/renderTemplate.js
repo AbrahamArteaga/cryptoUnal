@@ -28,7 +28,7 @@ const renderTransaction = (req, res) => {
 
 const renderHomepage = (req, res) => {
         if (req.query.authenticated === 'true' && req.session.iduser){        
-            console.log(req.session);
+            //console.log(req.session);
             // console.log(req.session.transaction);
             res.render('home' , {            
                 title: 'Welcome',            

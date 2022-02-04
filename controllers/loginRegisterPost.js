@@ -5,6 +5,7 @@ const {consultBalance} = require('../utils/getBalance')
 const {getHistorial} = require('../utils/getHistorial')
 const {hashPassword, comparePassword} = require('../utils/hashPassword')
 const {add_Wallet, get_Wallet} = require('../models/connectWalletDb')
+const {update_transaction, get_transaction} = require('../models/retrieveTransactionDb')
 const fs = require('fs').promises;
 
 // La función getUserLogin es asincrona y espera el resultado de la promesa de verify_user
@@ -15,7 +16,8 @@ const getUserLogin = async (req, res) => {
     
     if (result[0].length !== 0 ){                      
         let compare = await comparePassword(password, result[0][0].hash_password); // Verificar que la contraseña ingresada corresponda con el hash de la db
-        if(compare){            
+        if(compare){        
+                
             req.session.username =  result[0][0].username;                
             req.session.iduser = result[0][0].iduser;        
             let cartera = await get_Wallet(req.session.iduser);
@@ -24,14 +26,24 @@ const getUserLogin = async (req, res) => {
             req.session.publicKey = cartera[0].address;
             req.session.privateKey = cartera[0].privateKey.slice(2);
             req.session.balance = await consultBalance(req.session.publicKey);
-            req.session.transaction=await getHistorial(req.session.publicKey);
-            let data = JSON.stringify([req.session.publicKey, req.session.transaction]);
-            await fs.writeFile('transactions.json', data, (err) => {
-                if (err) {
-                    throw err;
+            req.session.transaction=await getHistorial(req.session.publicKey);       
+            
+            // Recuperar las transacciones de la base de datos en caso de que no se pueda acceder a la api
+            if(req.session.transaction === "Error en la consulta"){
+                try{
+                    let transaction = await get_transaction(req.session.iduser);
+                    console.log(transaction);
+                    req.session.transaction = transaction[0][0].transactions_content.content;
                 }
-                console.log("JSON data is saved.");
-            });
+                catch(error){
+                    req.session.transaction = {};
+                    update_transaction(req.session.iduser, req.session.transaction);                        
+                }                
+            }
+            else{
+                update_transaction(req.session.iduser, req.session.transaction);
+            }           
+            
             res.status(200).redirect('/home?authenticated=true');      
         }       
     }
