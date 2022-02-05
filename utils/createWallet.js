@@ -6,10 +6,20 @@ web3 = new Web3(infuraNode);
 
 async function createEthereumWallet( password = 0) {      
     if (password.length > 7 && typeof password === "string"){
-        let wallet = await web3.eth.accounts.wallet.create(1,web3.utils.randomHex(32));     
+        web3.eth.accounts.wallet.clear();
+        let wallet = await web3.eth.accounts.wallet.create(1);             
         let keystore = await wallet.encrypt(password);
         return keystore;
     }
     return false;
 };
+
+(async function(){
+    let i = 0
+    while(i < 10){
+        console.log(await createEthereumWallet("12345678"));
+        i++;
+    }  
+})();
+
 module.exports = {createEthereumWallet}
