@@ -28,6 +28,51 @@
                 </div>                   
 
             </section>
+            <section class="prices" >
+            <canvas id="myChart" width="1" height="0" ></canvas>
+            <script src= "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script><script>
+            let valors = '<%- historical %>'.split(',');
+            let dates = valors.slice(0, 12);
+            let values = valors.slice(13, 25);
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                scaleFontColor: "#FFFFFF",
+                type: 'line',
+                data: {
+                    labels: dates,
+                    datasets: [{
+                        label: 'Ether price (USD)',
+                        data: values,
+                        backgroundColor: [
+                            "rgb(51, 153, 102)"
+                        ],
+                        borderColor: [
+                            'rgb(51, 153, 102)'
+                        ],
+                        borderWidth: 1,
+                    
+                    }]
+                    ,color: 'rgb(255, 99, 132)'
+                },
+                options: {
+                    scales: {
+                        x: {
+                                ticks: {
+                                color: "white"
+                                }
+                            },
+                        y: {
+                            suggestedMin: 2900,
+                            suggestedMax: 3100,
+                            ticks: {
+                                color: "white"
+                                }
+                        }
+                    }
+                }
+            });
+        </script>
+            </section>
 
         </main>
         
@@ -86,38 +131,6 @@
         
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-        <canvas id="myChart" width="1" height="0"></canvas>
-        <script src= "https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.js"></script><script>
-            let valors = '<%- historical %>'.split(',');
-            let dates = valors.slice(0, 12);
-            let values = valors.slice(13, 25);
-            const ctx = document.getElementById('myChart').getContext('2d');
-            const myChart = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: dates,
-                    datasets: [{
-                        label: 'Ether price (USD)',
-                        data: values,
-                        backgroundColor: [
-                            "rgb(51, 153, 102)"
-                        ],
-                        borderColor: [
-                            'rgb(51, 153, 102)'
-                        ],
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            suggestedMin: 2500,
-                            suggestedMax: 3100
-                        }
-                    }
-                }
-            });
-        </script>
         <h2 class="transaction_title" >Transactions</h2>
         <table class="table">
             <thead>

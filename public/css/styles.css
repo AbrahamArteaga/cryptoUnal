@@ -168,6 +168,12 @@ label:hover{
     width: calc(50% - 20px);
     margin: 20px 10px 20px 20px;
 }
+#homepage .prices {
+    background: #3A4F3A;
+    border-radius: 18px;
+    width: calc(50% - 20px);
+    margin: 20px 10px 20px 20px;
+}
 
 #homepage .wallets__title {
     color: white;
