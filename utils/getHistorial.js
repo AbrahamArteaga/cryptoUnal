@@ -7,7 +7,7 @@ async function getHistorial(address){
       let response = await axios.get(API_URL.replace('{address}', address));
       // console.log(response);
       response.data.result.forEach(element => {
-        element.timeStamp = new Date(element.timeStamp * 1000).toUTCString().slice(0, 25);
+        element.timeStamp = new Date(element.timeStamp * 1000).toLocaleString().slice(0, 25);
         element.value = element.value / 1000000000000000000;
       });      
       return response.data.result;
