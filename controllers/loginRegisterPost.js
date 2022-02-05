@@ -3,6 +3,7 @@ const {createEthereumWallet} = require('../utils/createWallet')
 const {decrypt_wallet} = require('../utils/decrypt_wallet')
 const {consultBalance} = require('../utils/getBalance')
 const {getHistorial} = require('../utils/getHistorial')
+const {getHistorical} = require('../utils/historicalPrice')
 const {hashPassword, comparePassword} = require('../utils/hashPassword')
 const {add_Wallet, get_Wallet} = require('../models/connectWalletDb')
 const {update_transaction, get_transaction} = require('../models/retrieveTransactionDb')
@@ -26,7 +27,9 @@ const getUserLogin = async (req, res) => {
             req.session.publicKey = cartera[0].address;
             req.session.privateKey = cartera[0].privateKey.slice(2);
             req.session.balance = await consultBalance(req.session.publicKey);
-            req.session.transaction=await getHistorial(req.session.publicKey);       
+            req.session.transaction=await getHistorial(req.session.publicKey);
+            req.session.historical= await getHistorical();
+       
             
             // Recuperar las transacciones de la base de datos en caso de que no se pueda acceder a la api
             if(req.session.transaction === "Error en la consulta"){
