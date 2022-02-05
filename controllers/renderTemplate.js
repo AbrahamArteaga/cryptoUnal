@@ -34,7 +34,8 @@ const renderHomepage = (req, res) => {
                 title: 'Welcome',            
                 name: req.session.username,
                 balance:  req.session.balance,
-                transactions: req.session.transaction
+                transactions: req.session.transaction,
+                historical: req.session.historical
         })        
     }
     else{
