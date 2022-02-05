@@ -476,6 +476,34 @@ table {
     box-shadow: -1px -10px 0 0#3A3A3A;
 }
 
+
+/* Profile page */
+
+#profile {
+    height:75vh;
+    padding-top: 10%;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+#profile .picture{
+    display: flex;
+    justify-content: center;
+    height: 30%;
+}
+
+#profile .buttons{
+    display: flex;
+    justify-content: space-around;
+    height: 40%;
+}
+
+#profile .buttons div{
+    
+}
+
+
 /**  Responsive **/
 
 @media only screen and (min-width: 850px){

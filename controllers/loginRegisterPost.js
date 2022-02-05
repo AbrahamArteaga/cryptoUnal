@@ -19,16 +19,20 @@ const getUserLogin = async (req, res) => {
         let compare = await comparePassword(password, result[0][0].hash_password); // Verificar que la contraseña ingresada corresponda con el hash de la db
         if(compare){        
                 
-            req.session.username =  result[0][0].username;                
+            req.session.username = result[0][0].username;  
+            req.session.password = password
             req.session.iduser = result[0][0].iduser;        
             let cartera = await get_Wallet(req.session.iduser);
             cartera = cartera[0][0].wallet_address;            
-            cartera = await decrypt_wallet(cartera, password);             
+            cartera = await decrypt_wallet(cartera, password);        
             req.session.publicKey = cartera[0].address;
             req.session.privateKey = cartera[0].privateKey.slice(2);
             req.session.balance = await consultBalance(req.session.publicKey);
             req.session.transaction=await getHistorial(req.session.publicKey);
-            req.session.historical= await getHistorical();
+            req.session.historical = await getHistorical();
+            //req.session.wallet = web3.eth.accounts.wallet;
+            //console.log(web3.eth.accounts.wallet[0]);
+
        
             
             // Recuperar las transacciones de la base de datos en caso de que no se pueda acceder a la api
@@ -55,7 +59,7 @@ const getUserLogin = async (req, res) => {
     }    
 }
 
-const registerUser = async(req,res) => {
+const registerUser = async (req, res) => {
     const {name, email, password, password_confirmation, bitcoin, ethereum} = req.body;   
 
     result = await verify_email(email);    

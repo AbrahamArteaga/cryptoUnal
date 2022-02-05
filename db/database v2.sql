@@ -153,6 +153,15 @@ BEGIN
   END IF;
 
 END;
+
+CREATE PROCEDURE `update_email`(IN id INT, IN newemail varchar(256))
+BEGIN UPDATE users SET	users.email = newemail WHERE iduser = id;
+END;
+
+
+
+
+
 //
 /* CREATE PROCEDURE add_Transaction (IN id var ) */
 
