@@ -1,12 +1,12 @@
 const express = require("express");
 const path = require('path');
-const bodyParser = require('body-parser');
 const {sessionInfo} = require('./middleware/session')
 const app = express();
 
 // Routes
 const login_register = require('./routes/login_register');
 const home = require('./routes/mainPage');
+
 // Archivos estáticos
 app.use(express.static(path.join(__dirname, 'public')));    
 // Motor de plantillas

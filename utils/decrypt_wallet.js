@@ -11,7 +11,8 @@ async function decrypt_wallet(encrypted_wallet={} , key="") {
             let decryptedWallet = await web3.eth.accounts.wallet.decrypt(wallet, key);            
             return decryptedWallet;
         }
-        catch(error){            
+        catch (error) { 
+            console.log(error)
             return "Cartera no valida, clave erronea o vacia";
         }        
     }

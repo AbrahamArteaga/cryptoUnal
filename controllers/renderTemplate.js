@@ -26,6 +26,30 @@ const renderTransaction = (req, res) => {
     })
 }
 
+const renderProfile = (req, res) => {
+    // console.log('TRANSACTIONS', req.session.publicKey, req.session.privateKey)
+    res.render('profile', {
+        title: 'profile',
+        publicKey: req.session.publicKey,
+        privateKey: req.session.privateKey,
+        password: req.session.password
+    })
+}
+
+const renderNewEmail = (req, res) => {
+    res.render('newEmail', {
+        title: 'Update Email',
+        password: req.session.password
+    })
+}
+
+const renderNewPassword = (req, res) => {
+    res.render('newPassword', {
+        title: 'Update Password',
+        password: req.session.password
+    })
+}
+
 const renderHomepage = (req, res) => {
         if (req.query.authenticated === 'true' && req.session.iduser){        
             //console.log(req.session);
@@ -44,4 +68,6 @@ const renderHomepage = (req, res) => {
     
 }
 
-module.exports = {renderLogin, renderRegister, renderTransaction, renderHomepage}
+
+
+module.exports = { renderLogin, renderRegister, renderTransaction, renderHomepage, renderProfile, renderNewEmail, renderNewPassword }

@@ -1,37 +1,33 @@
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../public/css/styles-homepage.css">
-</head>
-
-<body>
+<%- include('partials/head') %>
+<body id="profilepage" style="background-color: white;">
     <header>
         <h1 class="page__title">Crypto<b class="page__title page__title--bold">UNAL</b></h1>
     </header>
-   
-    <div id="change-email">
-        
-        <div class="container">
-            <form class="form-box animated fadeInUp" method="POST">
-        
-                <div class="inner_container">
-        
-                    <div>
-                        <input type="text" name="email" placeholder="new email address" required>
-                    </div>
-        
-                    <button type="submit">
-                        Update
-                    </button>
-        
-                </div>
-        
-            </form>
+
+    <div id="profile">
+        <div class="picture">
+            <ion-icon name="person-circle-outline"></ion-icon>
+            profile picture
         </div>
-        
+
+        <div class="buttons">
+            <div class="email-button">
+                <a onclick="window.location.href = '/home/newEmail'">
+                    <span class="icon">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </span>
+                    <span class="text">change email here</span>
+                </a>
+            </div>
+            <div class="password-button">
+                <a onclick="window.location.href = '/home/newPassword'">
+                    <span class="icon">
+                        <ion-icon name="key-outline"></ion-icon>
+                    </span>
+                    <span class="text">change password here</span>
+                </a>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -86,9 +82,8 @@
         list.forEach((item) =>
             item.addEventListener('click', activeLink));
     </script>
-    
+
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
-</html>
+<%- include ('partials/footer') %>

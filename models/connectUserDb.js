@@ -67,4 +67,52 @@ const add_user_db = (name, email, password) => {
     }).then((rows) => rows).catch((err) => console.log(err));    
 };
 
-module.exports = {verify_user, verify_email , add_user_db};
+const update_email = (iduser, newemail) => {
+    return new Promise((resolve, reject) => {
+        let connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'EDIT_CRYPTO_USER',
+            password: '123',
+            database: 'CryptoUNAL'
+        });
+
+        connection.query(`call update_email("${iduser}", "${newemail}")`, (err, rows) => {
+            if (err) {
+                connection.end();
+                reject(err);
+            }
+            else {
+                connection.end();
+                resolve(rows);
+            }
+        });
+    }).then((rows) => rows).catch((err) => console.log(err));
+};
+
+const update_password = (iduser, newpassword, encryptedWallet) => {
+    return new Promise((resolve, reject) => {
+        let connection = mysql.createConnection({
+            host: 'localhost',
+            user: 'EDIT_CRYPTO_USER',
+            password: '123',
+            database: 'CryptoUNAL'
+        });
+
+        wallet = JSON.stringify(encryptedWallet);
+        console.log('ULTIMO', wallet)
+        query = `UPDATE wallets SET wallets.wallet_address = '${encryptedWallet}' WHERE users_iduser = '${iduser}';`
+
+        connection.query(query, (err, rows) => {
+            if (err) {
+                connection.end();
+                reject(err);
+            }
+            else {
+                connection.end();
+                resolve(rows);
+            }
+        });
+    }).then(rows => rows).catch((err) => console.log(err));
+};
+
+module.exports = { verify_user, verify_email, add_user_db, update_email, update_password};
