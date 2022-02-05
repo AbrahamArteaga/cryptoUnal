@@ -1,4 +1,4 @@
-const API_URL = "https://api-ropsten.etherscan.io/api?module=account&action=txlist&address={address}&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=FGVV1TVIVPSR4DGEIC9E55G2ZABUBMA4XA";
+const API_URL = "https://api-ropsten.etherscan.io/api?module=account&action=txlist&address={address}&startblock=0&endblock=99999999&page=1&offset=100&sort=desc&apikey=FGVV1TVIVPSR4DGEIC9E55G2ZABUBMA4XA";
 const axios = require('axios');
 
 async function getHistorial(address){
