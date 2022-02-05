@@ -31,9 +31,7 @@ const getUserLogin = async (req, res) => {
             req.session.transaction=await getHistorial(req.session.publicKey);
             req.session.historical = await getHistorical();
             //req.session.wallet = web3.eth.accounts.wallet;
-            //console.log(web3.eth.accounts.wallet[0]);
-
-       
+            //console.log(web3.eth.accounts.wallet[0]);       
             
             // Recuperar las transacciones de la base de datos en caso de que no se pueda acceder a la api
             if(req.session.transaction === "Error en la consulta"){

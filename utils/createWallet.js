@@ -14,12 +14,12 @@ async function createEthereumWallet( password = 0) {
     return false;
 };
 
-(async function(){
-    let i = 0
-    while(i < 10){
-        console.log(await createEthereumWallet("12345678"));
-        i++;
-    }  
-})();
+// (async function(){
+//     let i = 0
+//     while(i < 10){
+//         console.log(await createEthereumWallet("12345678"));
+//         i++;
+//     }  
+// })();
 
 module.exports = {createEthereumWallet}

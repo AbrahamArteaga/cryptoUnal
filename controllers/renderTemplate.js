@@ -59,7 +59,8 @@ const renderHomepage = (req, res) => {
                 name: req.session.username,
                 balance:  req.session.balance,
                 transactions: req.session.transaction,
-                historical: req.session.historical
+                historical: req.session.historical,
+                last_value_eth: req.session.historical[1][req.session.historical[1].length -1]
         })        
     }
     else{
