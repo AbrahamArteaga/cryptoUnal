@@ -20,4 +20,3 @@ async function decrypt_wallet(encrypted_wallet={} , key="") {
 };
 
 module.exports = {decrypt_wallet};
-

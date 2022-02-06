@@ -11,6 +11,7 @@ const {decrypt_wallet} = require('../utils/decrypt_wallet');
 const {consultBalance} = require('../utils/getBalance');
 const {getHistorial} = require('../utils/getHistorial');
 const { hashPassword,comparePassword } = require('../utils/hashPassword');
+const { getHistorical } = require('../utils/HistoricalPrice');
 
 
 describe('createWallet', (done)=> {
@@ -224,7 +225,7 @@ describe("getHistorial" , () =>{
             expect(result).to.be.a("Array");
             expect(result[0].hash).to.be.eq("0x90ea96453b574910efa4deda26773feb3df2a76231de3ae3e2cd17c7f8fa9cf9");            
             expect(getStub).to.be.calledOnce;
-            expect(getStub).to.be.calledWith('https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0x6Fcb75934649e3bF6C18C3A5E02b0EC632813823&startblock=0&endblock=99999999&page=1&offset=10&sort=asc&apikey=FGVV1TVIVPSR4DGEIC9E55G2ZABUBMA4XA');
+            expect(getStub).to.be.calledWith('https://api-ropsten.etherscan.io/api?module=account&action=txlist&address=0x6Fcb75934649e3bF6C18C3A5E02b0EC632813823&startblock=0&endblock=99999999&page=1&offset=100&sort=desc&apikey=FGVV1TVIVPSR4DGEIC9E55G2ZABUBMA4XA');
             done();
         }).catch(done);
     })  
@@ -269,8 +270,8 @@ describe("hashPassword", (done)=>{
     })
 });
 
-describe("comparePassword", (done)=>{
-    it("Debe recibir contraseñas de longitud mayor a cero y un hash de longitud 60", ()=>{
+describe("comparePassword", ()=>{
+    it("Debe recibir contraseñas de longitud mayor a cero y un hash de longitud 60", (done)=>{
         comparePassword("12345678", "$2b$10$SCcI7GZX2jA9GV1psh0ULe9wZ36GMgIy4LcmJDHetPAd3bPKgdnq.")
         .then(result => {
             expect(result).to.be.true;            
@@ -289,22 +290,13 @@ describe("comparePassword", (done)=>{
     })
 });
 
-describe("comparePassword", (done)=>{
-    it("Debe recibir contraseñas de longitud mayor a cero y un hash de longitud 60", ()=>{
-        comparePassword("12345678", "$2b$10$SCcI7GZX2jA9GV1psh0ULe9wZ36GMgIy4LcmJDHetPAd3bPKgdnq.")
+describe("getHistorical", ()=>{
+    it("Debe recuperar un array de longitud 13 con los precios del ethereum", (done)=>{
+        getHistorical()
         .then(result => {
-            expect(result).to.be.true;            
+            expect(result).to.be.a("Array");            
+            expect(result[0]).to.have.lengthOf(13);
             done();
         }).catch(done);
-    })
-
-    it("No debe recibir números", ()=>{
-        result = comparePassword(123,"$2b$10$SCcI7GZX2jA9GV1psh0ULe9wZ36GMgIy4LcmJDHetPAd3bPKgdnq.");
-        expect(result).to.be.false;               
-    })
-
-    it("No debe recibir una cadena vacía", ()=>{
-        result = comparePassword("", "");
-        expect(result).to.be.false;             
-    })
+    })    
 });
