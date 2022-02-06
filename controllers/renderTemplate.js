@@ -43,10 +43,10 @@ const renderNewEmail = (req, res) => {
     })
 }
 
-const renderNewPassword = (req, res) => {
-    res.render('newPassword', {
-        title: 'Update Password',
-        password: req.session.password
+const renderNewUsername = (req, res) => {
+    res.render('newUsername', {
+        title: 'Update Username',
+        username: req.session.username
     })
 }
 
@@ -71,4 +71,4 @@ const renderHomepage = (req, res) => {
 
 
 
-module.exports = { renderLogin, renderRegister, renderTransaction, renderHomepage, renderProfile, renderNewEmail, renderNewPassword }
+module.exports = { renderLogin, renderRegister, renderTransaction, renderHomepage, renderProfile, renderNewEmail, renderNewUsername }

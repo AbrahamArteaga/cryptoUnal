@@ -154,8 +154,12 @@ BEGIN
 
 END;
 
-CREATE PROCEDURE `update_email`(IN id INT, IN newemail varchar(256))
+CREATE PROCEDURE update_email(IN id INT, IN newemail varchar(256))
 BEGIN UPDATE users SET	users.email = newemail WHERE iduser = id;
+END;
+
+CREATE PROCEDURE update_username(IN id INT, IN newusername varchar(256))
+BEGIN UPDATE users SET	users.username = newusername WHERE iduser = id;
 END;
 
 //

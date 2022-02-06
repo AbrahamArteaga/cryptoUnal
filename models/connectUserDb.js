@@ -89,7 +89,7 @@ const update_email = (iduser, newemail) => {
     }).then((rows) => rows).catch((err) => console.log(err));
 };
 
-const update_password = (iduser, newpassword, encryptedWallet) => {
+const update_username = (iduser, newusername) => {
     return new Promise((resolve, reject) => {
         let connection = mysql.createConnection({
             host: 'localhost',
@@ -98,11 +98,7 @@ const update_password = (iduser, newpassword, encryptedWallet) => {
             database: 'CryptoUNAL'
         });
 
-        wallet = JSON.stringify(encryptedWallet);
-        console.log('ULTIMO', wallet)
-        query = `UPDATE wallets SET wallets.wallet_address = '${encryptedWallet}' WHERE users_iduser = '${iduser}';`
-
-        connection.query(query, (err, rows) => {
+        connection.query(`call update_username("${iduser}", "${newusername}")`, (err, rows) => {
             if (err) {
                 connection.end();
                 reject(err);
@@ -112,7 +108,7 @@ const update_password = (iduser, newpassword, encryptedWallet) => {
                 resolve(rows);
             }
         });
-    }).then(rows => rows).catch((err) => console.log(err));
+    }).then((rows) => rows).catch((err) => console.log(err));
 };
 
-module.exports = { verify_user, verify_email, add_user_db, update_email, update_password};
+module.exports = { verify_user, verify_email, add_user_db, update_email, update_username};
