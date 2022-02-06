@@ -5,11 +5,6 @@
     </header>
 
     <div id="profile">
-        <div class="picture">
-            <ion-icon name="person-circle-outline"></ion-icon>
-            profile picture
-        </div>
-
         <div class="buttons">
             <div class="email-button">
                 <a onclick="window.location.href = '/home/newEmail'">
@@ -20,11 +15,11 @@
                 </a>
             </div>
             <div class="password-button">
-                <a onclick="window.location.href = '/home/newPassword'">
+                <a onclick="window.location.href = '/home/newUsername'">
                     <span class="icon">
                         <ion-icon name="key-outline"></ion-icon>
                     </span>
-                    <span class="text">change password here</span>
+                    <span class="text">change username here</span>
                 </a>
             </div>
         </div>
@@ -35,7 +30,7 @@
             <div id="navigation">
                 <ul>
                     <li class="nav-list">
-                        <a href="#">
+                        <a onclick="window.location.href = '/home'">
                             <span class="icon">
                                 <ion-icon name="home-outline"></ion-icon>
                             </span>
@@ -51,7 +46,7 @@
                         </a>
                     </li>
                     <li class="nav-list active">
-                        <a href="#">
+                        <a onclick="window.location.href = '/home/profile'">
                             <span class="icon">
                                 <ion-icon name="person-outline"></ion-icon>
                             </span>

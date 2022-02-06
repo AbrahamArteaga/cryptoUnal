@@ -1,4 +1,4 @@
-const { update_email, update_password } = require("../models/connectUserDb");
+const { update_email, update_username } = require("../models/connectUserDb");
 const Web3 = require('web3');
 
 
@@ -8,12 +8,10 @@ const setNewEmail = async (req, res) => {
     res.send('<script> alert("Email updated. Log-in again"); window.location.href = "/"; </script>');
 }
 
-const setNewPassword = async (req, res) => {
-    console.log(web3.eth.accounts.wallet[0])
-    /*const { newpassword } = req.body;
-    let wallet = web3.eth.accounts.encrypt(req.session.cartera, newpassword);
-    let result = await update_password(req.session.iduser, newpassword, wallet);
-    */
+const setNewUsername = async (req, res) => {
+    const { newusername } = req.body;
+    let result = await update_username(req.session.iduser, newusername);
+    res.send('<script> alert("Username updated. Log-in again"); window.location.href = "/"; </script>');
  }
 
-module.exports = { setNewEmail, setNewPassword }
+module.exports = { setNewEmail, setNewUsername }

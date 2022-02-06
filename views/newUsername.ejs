@@ -11,7 +11,7 @@
                 <div class="inner_container">
 
                     <div>
-                        <input type="text" name="newpassword" placeholder="new password" value="<%= password %>" required>
+                        <input type="text" name="newusername" placeholder="new username" value="<%= username %>" required>
                     </div>
 
                     <button type="submit">
@@ -25,12 +25,12 @@
 
     </div>
 
-    <footer>
+    <footer class="change-email">
         <section class="navigation">
             <div id="navigation">
                 <ul>
                     <li class="nav-list">
-                        <a href="#">
+                        <a onclick="window.location.href = '/home'">
                             <span class="icon">
                                 <ion-icon name="home-outline"></ion-icon>
                             </span>
@@ -46,7 +46,7 @@
                         </a>
                     </li>
                     <li class="nav-list active">
-                        <a href="#">
+                        <a onclick="window.location.href = '/home/profile'">
                             <span class="icon">
                                 <ion-icon name="person-outline"></ion-icon>
                             </span>
