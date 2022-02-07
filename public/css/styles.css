@@ -150,6 +150,7 @@ label:hover{
 #homepage main {
     display: flex;
     flex-direction: row;
+    height: 35vh;
 }
 
 .page__title {
